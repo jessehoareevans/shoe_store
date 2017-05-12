@@ -21,17 +21,19 @@
   </form>
 </div>
 
-<% if @stores.any? %>
+<% if @brands.any? %>
     <div class="form-group">
-      <label for="">Pick any relevant stores for your brand</label>
-      <% @stores.each() do |store| %>
-      <label class="form-check-label"><%= store.name() %> <input type="checkbox" name="store_ids[]" value="<%= store.id()%>"></label>
+      <label for="">Pick any relevant brands for your brand</label>
+      <% @brands.each() do |brand| %>
+      <label class="form-check-label"><%= brand.name() %> <input type="checkbox" name="brand_ids[]" value="<%= brand.id()%>"></label>
       <% end %>
     </div>
     <% else %>
     <div class="form-group">
-      <h3>Please add a store to your brand</h3>
+      <h3>Please add a brand to your store</h3>
     </div>
+
+    <% end %>
 <p>
   <a href="/">Home</a>
 </p>

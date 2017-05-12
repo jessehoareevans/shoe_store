@@ -10,12 +10,13 @@ end
 
 get('/brand') do
   @brands = Brand.all()
+  @stores = Store.all()
   erb(:brand)
 end
 
 get('/error') do
   @brand = Brand.all()
-  erb(:brand)
+  erb(:brand_error)
 end
 
 get('/brand/view') do
@@ -57,6 +58,7 @@ end
 
 get('/store') do
   @stores = Store.all()
+  @brands = Brand.all()
   erb(:store)
 end
 
