@@ -6,3 +6,5 @@ describe(Store) do
     expect(store.save()).to(eq(false))
   end
 end
+
+  
