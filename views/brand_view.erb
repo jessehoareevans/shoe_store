@@ -1,0 +1,29 @@
+<div class="well">
+  <h3>All brands:</h3>
+  <p>Click on a brand to edit the information and/or asscoiate a store with a brand.</p>
+  <ul>
+    <% @brands.each() do |brand| %>
+      <li><a href="<%= brand.id() %>"><strong><%=  brand.name() %></strong></a></li>
+
+      <% if brand.price? %>
+      <ul>
+        <li><%= brand.price() %></li>
+      </ul>
+      <% end %>
+      <% if brand.stores.any? %>
+      <ul>
+        <h5>Categories</h5>
+        <% brand.stores.each() do |store| %>
+          <li><%= store.name() %></li>
+        <% end %>
+      </ul>
+      <% end %>
+
+    <% end  %>
+  </ul>
+
+</div>
+
+<p>
+  <a href="/">Home</a>
+</p>

@@ -14,6 +14,11 @@ get('/brand') do
   erb(:brand)
 end
 
+get('/brand_view') do
+  @brands = Brand.all()
+  erb(:brand_view)
+end
+
 get('/error') do
   @brand = Brand.all()
   erb(:brand_error)
@@ -33,6 +38,7 @@ end
 post('/brand') do
   brand_type = params.fetch('brand_type')
   brand_price = params.fetch('brand_price')
+  store_ids = params.fetch('store_ids', nil)
   @brand = Brand.new({:name => brand_type, :price => brand_price})
 
   if @brand.save()

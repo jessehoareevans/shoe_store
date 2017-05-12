@@ -10,4 +10,9 @@ describe(Store) do
     store = Store.new({:name => "a".*(101)})
     expect(store.save()).to(eq(false))
   end
+
+  it("converts the name to capitalize the first letter") do
+    store = Store.create({:name => "foot locker"})
+    expect(store.name()).to(eq("Foot locker"))
+  end
 end
