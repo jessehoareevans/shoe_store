@@ -1,0 +1,14 @@
+<div class="well">
+  <h3>Error</h3>
+  <ul>
+    <% @store.errors().full_messages().each() do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <p>
+    <a href="/store">Back to view all Store</a>
+  </p>
+  <p>
+    <a href="/">Home</a>
+  </p>
+</div>

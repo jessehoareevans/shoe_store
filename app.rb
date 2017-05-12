@@ -14,18 +14,25 @@ get('/brand') do
 end
 
 get('/error') do
-  @new_brand = Brand.all()
+  @brand = Brand.all()
   erb(:brand)
 end
 
+get('/brand/view') do
+  @brands = Brand.all()
+  erb(:brand_view)
+end
+
 get('/brand/:id') do
+  @store = Store.all
   @brand = Brand.find(params.fetch("id").to_i())
   erb(:brand_edit)
 end
 
 post('/brand') do
   brand_type = params.fetch('brand_type')
-  @brand = Brand.new({:name => brand_type})
+  brand_price = params.fetch('brand_price')
+  @brand = Brand.new({:name => brand_type, :price => brand_price})
 
   if @brand.save()
     erb(:index)
@@ -36,8 +43,9 @@ end
 
 patch('/brand/:id') do
   brand_type = params.fetch('brand_type')
+  brand_price = params.fetch('brand_price')
   @brand = Brand.find(params.fetch("id").to_i())
-  @brand.update({:name => brand_type})
+  @brand.update({:name => brand_type, :price => brand_price})
   erb(:index)
 end
 

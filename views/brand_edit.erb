@@ -8,6 +8,15 @@
 </div>
 
 <div class="well">
+  <form class="form-horizontal" action="/brand" method="post">
+    <label for="brand_price">Alter price:</label>
+    <input type="number" id="brand_price" name="brand_price" min="0.99" max="2999.99">
+    <button type="submit" name="button">Submit</button>
+  </form>
+
+</div>
+
+<div class="well">
   <form class="form-horizontal" action="/brand/<%= @brand.id() %>" method="post">
     <input type="hidden" name="_method" value="delete">
     <label for="delete">Delete this Brand "<%= @brand.name() %>" ?</label>
