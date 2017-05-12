@@ -1,0 +1,22 @@
+<div class="well">
+  <form class="form-horizontal" action="/store/<%=@store.id()%>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label for="store_name">Rename this Store "<%= @store.name() %>"</label>
+    <input type="text" name="store_name" id="store_name">
+    <button class="btn btn-info" type="submit" name="button">Submit</button>
+
+  </form>
+</div>
+
+<div class="well">
+  <form class="form-horizontal" action="/store/<%=@store.id()%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <label for="delete">Delete this Store"<%= @store.name()%>" ?</label>
+    <button class="btn btn-danger" type="submit" name="button">Delete</button>
+
+  </form>
+
+</div>
+<p>
+  <a href="/">Home</a>
+</p>

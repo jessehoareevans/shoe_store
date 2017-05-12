@@ -1,25 +1,24 @@
-<h2>Brand: <%= @brand.name() %></h2>
-<hr>
-
-<% if @store %>
-  <h3> Currently working on: <%= @store.name %> </h3>
-
-<% else %>
-    <p><strong>Employee has not yet been assigned to a store.</strong></p>
-    <br>
-    <p><a href="/stores">Add a store to the database</a></p>
-<% end %>
-
-<h4>Assign brand to a store:</h4>
-<form id="update_store_id" action="/brands/<%= @brand.id() %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <input type="hidden" name="brand_id" id="brand_id" value="<%= @brand.id() %>">
-  <label for="store_select">Select the Project:  </label>
-    <br>
-  <select id="store_id" name="store_id">
-    <% @stores.each() do |store| %>
-      <option value="<%= store.id() %>"><%= store.name() %></option>
+<% if @brands.any? %>
+  <h3>All brands</h3>
+  <p>
+    Click on a link to edit or delete the brand.
+  </p>
+  <ul>
+    <% @brands.each() do |brand| %>
+    <li><a href="/brand/<%= brand.id() %>" ><%= brand.name() %></a></li>
     <% end %>
-  </select>
-  <button type="submit">Submit</button>
-</form>
+  </ul>
+<% else %>
+
+<% end %>
+<div class="well">
+  <form class="form-horizontal" action="/brand" method="post">
+    <label for="brand_type">Add a brand:</label>
+    <input type="text" id="brand_type" name="brand_type">
+    <button type="submit" name="button">Submit</button>
+  </form>
+
+</div>
+<p>
+  <a href="/">Home</a>
+</p>

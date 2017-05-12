@@ -8,55 +8,74 @@ get('/') do
   erb(:index)
 end
 
-get("/brands") do
-  @brands = Store.all()
-  erb(:brands)
-end
-
-get("/stores") do
-  @stores = Store.all()
-  erb(:stores)
-end
-
-post("/brands") do
-  name = params.fetch("brand_name")
-  Store.create({:name => name})
-  redirect("/brands")
-end
-
-post("/stores") do
-  name = params.fetch("brand_name")
-  Brand.create({:name => name})
-  redirect("/stores")
-end
-
-get("/brands/:id") do
-  @brand = Store.find(params.fetch("id").to_i())
-  if @brand.store_id
-    @store = Project.find(@brand.store_id)
-  else
-    @store = nil
-  end
-  @stores = Project.all
+get('/brand') do
+  @brands = Brand.all()
   erb(:brand)
 end
 
-get("/stores/:id") do
-  @store = Project.find(params.fetch("id").to_i())
-  @brands = Store.all
+get('/error') do
+  @new_brand = Brand.all()
+  erb(:brand)
+end
+
+get('/brand/:id') do
+  @brand = Brand.find(params.fetch("id").to_i())
+  erb(:brand_edit)
+end
+
+post('/brand') do
+  brand_type = params.fetch('brand_type')
+  @brand = Brand.new({:name => brand_type})
+
+  if @brand.save()
+    erb(:index)
+  else
+    erb(:brand_error)
+  end
+end
+
+patch('/brand/:id') do
+  brand_type = params.fetch('brand_type')
+  @brand = Brand.find(params.fetch("id").to_i())
+  @brand.update({:name => brand_type})
+  erb(:index)
+end
+
+delete('/brand/:id') do
+  @brand = Brand.find(params.fetch("id").to_i())
+  @brand.delete()
+  erb(:index)
+end
+
+get('/store') do
+  @stores = Store.all()
   erb(:store)
 end
 
-patch("/brands/:id") do
-  store_id = params.fetch("store_id").to_i()
-  @brand = Store.find(params.fetch("id").to_i())
-  @brand.update({:store_id => store_id})
-  redirect back
+post('/store') do
+  store_name = params.fetch('store_name')
+  @store = Store.new({:name => store_name})
+  if @store.save()
+    erb(:index)
+  else
+    erb(:store_error)
+  end
 end
 
-patch("/stores/:id") do
-  brand = Store.find(params.fetch("brand_id").to_i())
-  @store = Project.find(params.fetch("id").to_i())
-  @store.brands.push(brand)
-  redirect back
+get('/store/:id') do
+  @store = Store.find(params.fetch("id").to_i())
+  erb(:store_edit)
+end
+
+delete('/store/:id') do
+  @store = Store.find(params.fetch("id").to_i())
+  @store.delete()
+  erb(:index)
+end
+
+patch('/store/:id') do
+  store_name = params.fetch('store_name')
+  @store = Store.find(params.fetch("id").to_i())
+  @store.update({:name => store_name})
+  erb(:index)
 end
