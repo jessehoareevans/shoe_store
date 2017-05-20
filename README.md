@@ -6,7 +6,7 @@
 
 ## Description
 
-_This application will allow a user to find out information about their favourite shoe brands and stores. The user will be able to navigate to a brand page that will show all of the shoes that are available and will give the user a price. The user will also be able to navigate to a brand page that will show all of the stores that carry their desired shoe and the price. _
+This application will allow a user to find out information about their favourite shoe brands and stores. The user will be able to navigate to a brand page that will show all of the shoes that are available and will give the user a price. The user will also be able to navigate to a brand page that will show all of the stores that carry their desired shoe and the price. 
 
 ## Setup/Installation Requirements
 
