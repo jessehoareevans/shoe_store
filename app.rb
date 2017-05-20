@@ -8,6 +8,16 @@ get('/') do
   erb(:index)
 end
 
+# get('/view_stores') do
+#   @brands = Brand.all()
+#   @stores = Store.all()
+#   erb(:view_stores)
+# end
+#
+# get('/view_brands') do
+#   erb(:view_brands)
+# end
+
 get('/brand') do
   @brands = Brand.all()
   @stores = Store.all()

@@ -1,3 +1,5 @@
+<h1><%= @brand.name() %></h1>
+
 <div class="well">
   <form class="form-horizontal" action="/brand/<%= @brand.id() %>" method="post">
     <input type="hidden" name="_method" value="patch">
@@ -10,7 +12,7 @@
 <div class="well">
   <form class="form-horizontal" action="/brand" method="post">
     <label for="brand_price">Alter price:</label>
-    <input type="number" id="brand_price" name="brand_price"> 
+    <input type="number" id="brand_price" name="brand_price">
     <button type="submit" name="button">Submit</button>
   </form>
 
@@ -19,9 +21,25 @@
 <div class="well">
   <form class="form-horizontal" action="/brand/<%= @brand.id() %>" method="post">
     <input type="hidden" name="_method" value="delete">
-    <label for="delete">Delete this Brand "<%= @brand.name() %>" ?</label>
+    <label for="delete">Delete this Brand "<%= @brand.name() %>"?</label>
     <button class="btn btn-danger" type="submit" name="button">Delete</button>
   </form>
+</div>
+
+<div class="well">
+
+  <% if @brand.stores().any?() %>
+    <h3>Here are all the stores that carry this brand:</h3>
+
+    <ul>
+      <% @brand.stores().each() do |store| %>
+        <li> <a href="/store/<%= store.id()%>"><%= store.name() %></a> </li>
+      <% end %>
+    </ul>
+
+    <% else %>
+      <p>There are no stores associated with this brand</p>
+    <% end %>
 </div>
 <p>
   <a href="/">Home</a>
