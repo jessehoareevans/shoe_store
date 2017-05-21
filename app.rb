@@ -81,8 +81,17 @@ end
 post('/store') do
   store_name = params.fetch('store_name')
   @store = Store.new({:name => store_name})
-  if @store.save()
-    erb(:index)
+  @store.save()
+  brand_ids = params.fetch('brand_ids', nil)
+  # brand = Brand.find(brand_ids)
+  if @store.save() && brand_ids != nil
+    brand_ids.each do |brand_id|
+    brand = Brand.find(brand_id)
+    @store.brands.push(brand)
+    @stores = Store.all()
+    @brands = Brand.all()
+    redirect("/")
+  end
   else
     erb(:store_error)
   end
@@ -103,5 +112,6 @@ patch('/store/:id') do
   store_name = params.fetch('store_name')
   @store = Store.find(params.fetch("id").to_i())
   @store.update({:name => store_name})
+  brand_ids = params.fetch('brand_ids', nil)
   erb(:index)
 end

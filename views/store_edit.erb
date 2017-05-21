@@ -20,13 +20,13 @@
   </div>
 
 <div class="well">
-  
+
   <% if @store.brands().any?() %>
     <h3>Here are all the brands in this store:</h3>
 
     <ul>
       <% @store.brands().each() do |brand| %>
-        <li> <a href="/brand/<%= brand.id()%>"><%= brand.name() %></a> </li>
+        <li> <a href="/brand/<%= brand.id()%>"><%= brand.name() %></a>: $<%= brand.price() %>.00 </li> 
       <% end %>
     </ul>
 

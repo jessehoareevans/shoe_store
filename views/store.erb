@@ -18,12 +18,12 @@
     <label for="store_name">Name of the store:</label>
     <input type="text" id="store_name" name="store_name">
     <button type="submit" name="button">Submit</button>
-  </form>
+
 </div>
 
 <% if @brands.any? %>
     <div class="form-group">
-      <label for="">Pick any relevant brands for your brand</label>
+      <label for="">Pick any relevant brands for your store</label>
       <% @brands.each() do |brand| %>
       <label class="form-check-label"><%= brand.name() %> <input type="checkbox" name="brand_ids[]" value="<%= brand.id()%>"></label>
       <% end %>
@@ -34,6 +34,8 @@
     </div>
 
     <% end %>
+
+  </form>
 <p>
   <a href="/">Home</a>
 </p>
